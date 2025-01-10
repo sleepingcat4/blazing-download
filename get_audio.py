@@ -1,7 +1,11 @@
 import subprocess
 import os
 
-def yt_download(url, proxy=None, batch_file=None, output_dir='.'):
+def yt_download(proxy=None, batch_file=None):
+    output_dir = 'audio-fast'
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
     command = [
         'yt-dlp', 
         '-f', 'bestaudio', 
@@ -17,7 +21,8 @@ def yt_download(url, proxy=None, batch_file=None, output_dir='.'):
     if batch_file:
         command.extend(['-a', batch_file])
     else:
-        command.append(url)
+        print("No batch file provided!")
+        return
     
     try:
         subprocess.run(command, check=True)
