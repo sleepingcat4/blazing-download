@@ -1,4 +1,5 @@
 import subprocess
+import os
 
 def yt_download(url, proxy=None, batch_file=None, output_dir='.'):
     command = [
@@ -7,7 +8,7 @@ def yt_download(url, proxy=None, batch_file=None, output_dir='.'):
         '--extract-audio', 
         '--audio-format', 'wav', 
         '--concurrent-fragments', '30',
-        '-o', f'{output_dir}/%(title)s.%(ext)s'
+        '-o', f'{output_dir}/audio%(autonumber)s.%(ext)s'
     ]
     
     if proxy:
